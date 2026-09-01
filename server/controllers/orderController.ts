@@ -148,8 +148,42 @@ export const updateOrderStatus = async(req:Request , res:Response) => {
 
     res.json({order:updateOrder})
 
-
-
 }
+
+
+// Get all orders (admin)
+// GET /api/orders/all
+
+
+export const getAllOrders = async (req:Request , res:Response) => {
+
+    const orders = await prisma.order.findMany({
+        where:{NOT: [{paymentMethod:"card" , isPaid:false}]},
+        include: {
+            user:{ select:{name:true , email: true}},
+            deliveryPartner: {select: {name:true, phone:true}}},
+        orderBy:{createdAt:"desc"}
+    })
+
+    res.json({orders})
+} 
+
+// Get order locations 
+// GET api/orders/:id/location
+
+export const getOrderLocation = async (req:Request , res:Response) => {
+    const order = await prisma.order.findFirst({
+        where:{id:req.params.id as string , userId: req.user!.id},
+        select:{liveLocation:true, status:true}
+    })
+
+    if(!order) return res.status(404).json({message: "Order not found "});
+    res.json({liveLocation:order.liveLocation , status: order.status})
+}
+
+
+
+
+
 
 
