@@ -6,7 +6,6 @@ dist/
 dist-ssr/
 
 # Environment variables
-.env
 client/.env
 server/.env
 client/.env.local
@@ -26,8 +25,6 @@ lerna-debug.log*
 config.bat
 
 # Editor directories and files
-.vscode/*
-!.vscode/extensions.json
 .idea
 .DS_Store
 Thumbs.db
@@ -39,3 +36,7 @@ Thumbs.db
 *.sln
 *.sw?
 config.bat
+branch_structure.json
+temp_auto_push.bat
+temp_interactive_push.bat
+.gitignore
