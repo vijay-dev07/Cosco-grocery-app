@@ -26,10 +26,9 @@ lerna-debug.log*
 config.bat
 
 # Editor directories and files
-.vscode/
-.idea/
-
-# OS files
+.vscode/*
+!.vscode/extensions.json
+.idea
 .DS_Store
 Thumbs.db
 
@@ -39,3 +38,4 @@ Thumbs.db
 *.njsproj
 *.sln
 *.sw?
+config.bat
